@@ -1,4 +1,4 @@
-import  numpy               as npy
+import  numpy               as np
 import  matplotlib.pyplot   as plt
 
 class Error(Exception):
@@ -20,7 +20,7 @@ class SierpinskiTriangle(object):
         self._centers_      = []
         self._flag_         = 0
         vertices            =\
-        npy.array\
+        np.array\
         (
             [
                 [self._x_, self._y_],
@@ -40,7 +40,7 @@ class SierpinskiTriangle(object):
         self._flag_         = 1
         self._depth_        = options.get('depth', 3)
         self._draw_fractal_(self._vertices_, self._depth_)
-        return npy.asarray(self._points_)[1:]
+        return np.asarray(self._points_)[1:]
 
     def draw_triangle(self, vertices):
         ''' '''
@@ -59,7 +59,7 @@ class SierpinskiTriangle(object):
         self.draw_triangle(vertices)
         if level > 0:
             v           =\
-            npy.array\
+            np.array\
             (
                 [
                     vertices[0],
@@ -70,7 +70,7 @@ class SierpinskiTriangle(object):
             self._draw_fractal_(v, level - 1)
 
             v           =\
-            npy.array\
+            np.array\
             (
                 [
                     vertices[1],
@@ -81,7 +81,7 @@ class SierpinskiTriangle(object):
             self._draw_fractal_(v, level - 1)
 
             v           =\
-            npy.array\
+            np.array\
             (
                 [
                     vertices[2],
@@ -97,7 +97,7 @@ class SierpinskiTriangle(object):
             raise InitializationError("Function not initialized")
         with_centers    = options.get('with_centers', False)
         if with_centers:
-            centers     = npy.asarray(self._centers_)
+            centers     = np.asarray(self._centers_)
             plt.scatter(centers[:, 0], centers[:, 1])
         plt.show()
 

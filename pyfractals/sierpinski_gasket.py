@@ -1,4 +1,4 @@
-import  numpy               as npy
+import  numpy               as np
 import  matplotlib.pyplot   as plt
 
 class Error(Exception):
@@ -27,12 +27,12 @@ class SierpinskiGasket(object):
 
     def draw_tetrahedra(self, a, b, c, d, k):
         ''' '''
-        ab      = npy.zeros((3))
-        bc      = npy.zeros((3))
-        ac      = npy.zeros((3))
-        ad      = npy.zeros((3))
-        bd      = npy.zeros((3))
-        cd      = npy.zeros((3))
+        ab      = np.zeros((3))
+        bc      = np.zeros((3))
+        ac      = np.zeros((3))
+        ad      = np.zeros((3))
+        bd      = np.zeros((3))
+        cd      = np.zeros((3))
     
         if(k > 0):
             for j in range(3):
@@ -57,11 +57,11 @@ class SierpinskiGasket(object):
  
     def Points(self):
         ''' '''
-        return npy.asarray(self._points_)
+        return np.asarray(self._points_)
 
     def Centers(self):
         ''' '''
-        return npy.asarray(self._centers_)
+        return np.asarray(self._centers_)
 
     def __call__(self, **options):
         ''' 
@@ -74,9 +74,9 @@ class SierpinskiGasket(object):
             raise InitializationError("Function not initialized")
         else:
             if markers == 'centers':
-                points     = npy.asarray(self._centers_)
+                points     = np.asarray(self._centers_)
             elif markers == '':
-                points      = npy.asarray(self._points_)
+                points      = np.asarray(self._points_)
             
         if points is not None:
             plt.scatter(points[:, 0], points[:, 1], points[:, 2])
@@ -86,7 +86,7 @@ class SierpinskiGasket(object):
         ''' '''
         self._order_        = options.get('order', 3)
         self._flag_         = 1
-        start               = npy.asarray(start)
+        start               = np.asarray(start)
         vertices            =\
         [
             start,
@@ -96,7 +96,7 @@ class SierpinskiGasket(object):
         ]
         self.draw_tetrahedra(vertices[0], vertices[1], vertices[2], vertices[3], self._order_)
         
-        return npy.asarray(self._points_)
+        return np.asarray(self._points_)
 
 def run():
     ''' '''
